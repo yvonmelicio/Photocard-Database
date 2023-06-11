@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-repeat: no-repeat;
+        background-image: linear-gradient(to bottom right, #ffbbc9, #b5b8ff);
+        background-size: cover;
+        background-attachment: fixed;
+        width: 100%;
+        height: 100vh;
+        font-family: "Nunito", sans-serif;
+      }
+      .navbar {
+        font-family: "Bagel Fat One", cursive;
+        background-color: #1b0632;
+      }
+      .navbar-header {
+        margin-left: 10px;
+      }
+      .logout {
+        background-color: #5b5eb5;
+        border-color: #5b5eb5;
+      }
+      .logoutbtn {
+        margin-right: 10px;
+      }
+      .insrt {
+        font-family: "Bagel Fat One", cursive;
+      }
+      .btngrp {
+        background-color: #5b5eb5;
+        border-color: #5b5eb5;
+      }
+      .btnvw {
+        background-color: #5b5eb5;
+        border-color: #5b5eb5;
+      }
+    </style>
+    <title>Insert Products</title>
+  </head>
+  <body>
+    <div class="navbar navbar-expand-sm navbar-dark">
+      <div class="navbar-header container-fluid">
+        <a class="navbar-brand" href="view.html">HUEKARTS</a>
+      </div>
+      <div class="">
+        <a
+          href="index.html"
+          class="btn btn-success btn-outline-light logout logoutbtn"
+          id="logout"
+          style="white-space: nowrap"
+        >
+          Log Out</a
+        >
+      </div>
+    </div>
+    <br />
+    <h3 class="text-center insrt">Insert Products</h3>
+    <br />
+    <div class="container col-sm-5 justify-content-center">
+      <form>
+        <div class="mb-3">
+          <label for="PhotoC" class="form-label"><b>Photocard:</b></label>
+          <input type="text" class="form-control" id="Photocard" />
+        </div>
+        <div class="mb-3">
+          <label for="GroupN" class="form-label"><b>Group/Artist:</b></label>
+          <input type="text" class="form-control" id="GroupName" />
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="ADME" class="form-label"
+            ><b>Album/DVD/Merch/Event:</b></label
+          >
+          <input type="text" class="form-control" id="FromWhere" />
+        </div>
+        <div class="mb-3">
+          <label for="ConditionPc" class="form-label"><b>Condition:</b></label>
+          <input type="text" class="form-control" id="PcCondition" />
+        </div>
+        <div class="mb-3">
+          <label for="Quanti" class="form-label"><b>Quantity:</b></label>
+          <input type="text" class="form-control" id="HowMany" />
+        </div>
+        <div class="mb-3">
+          <label for="StatusPc" class="form-label"><b>Status:</b></label>
+          <input type="text" class="form-control" id="PcStatus" />
+        </div>
+        <div class="mb-3">
+          <label for="StatusPc" class="form-label"><b>Price:</b></label>
+          <input type="text" class="form-control" id="PcPrice" />
+        </div>
+      </form>
+      <br />
+      <div class="d-flex justify-content-between btn-group">
+        <button class="btn btn-success btn-outline-light btngrp" id="InsertBtn">
+          INSERT
+        </button>
+        <button class="btn btn-success btn-outline-light btngrp" id="SelectBtn">
+          SELECT
+        </button>
+        <button class="btn btn-success btn-outline-light btngrp" id="UpdateBtn">
+          UPDATE
+        </button>
+        <button class="btn btn-success btn-outline-light btngrp" id="DeleteBtn">
+          DELETE
+        </button>
+      </div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="d-flex justify-content-center">
+      <a class="btn btn-success btn-outline-light btnvw" href="view.html">View Photocards</a>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBYfgDkJm0lvEJMTehqrZA8n5EL8cf1YsA",
+        authDomain: "photocards-33ecf.firebaseapp.com",
+        projectId: "photocards-33ecf",
+        storageBucket: "photocards-33ecf.appspot.com",
+        messagingSenderId: "590721070592",
+        appId: "1:590721070592:web:e1028ed8c9b3ff83cb0ae5",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      import {
+        getDatabase,
+        ref,
+        set,
+        child,
+        update,
+        remove,
+        get,
+      } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+      const db = getDatabase();
+
+      var pcname = document.getElementById("Photocard");
+      var grpname = document.getElementById("GroupName");
+      var album = document.getElementById("FromWhere");
+      var condition = document.getElementById("PcCondition");
+      var quanti = document.getElementById("HowMany");
+      var stats = document.getElementById("PcStatus");
+      var price = document.getElementById("PcPrice");
+
+      var insrtBtn = document.getElementById("InsertBtn");
+      var selBtn = document.getElementById("SelectBtn");
+      var updtBtn = document.getElementById("UpdateBtn");
+      var dltBtn = document.getElementById("DeleteBtn");
+
+      //Add Datas
+
+      function InsertData() {
+        set(ref(db, "Photocards/" + pcname.value), {
+          Photocard: pcname.value,
+          GroupName: grpname.value,
+          Album_Merch_DVD_Event: album.value,
+          Condition: condition.value,
+          Quantity: quanti.value,
+          Status: stats.value,
+          Price: price.value
+        })
+          .then(() => {
+            alert("Product Added Successfully!");
+            window.location.href = "insert.html";
+          })
+          .catch((error) => {
+            alert("Unsuccessful, Error" + error);
+          });
+      }
+
+      //Select Data
+
+      function SelectData() {
+        const dbref = ref(db);
+
+        get(child(dbref, "Photocards/" + pcname.value))
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              pcname.value = snapshot.val().Photocard;
+              grpname.value = snapshot.val().GroupName;
+              album.value = snapshot.val().Album_Merch_DVD_Event;
+              condition.value = snapshot.val().Condition;
+              quanti.value = snapshot.val().Quantity;
+              stats.value = snapshot.val().Status;
+              price.value = snapshot.val().Price;
+            } else {
+              alert("No PC Found");
+            }
+          })
+          .catch((error) => {
+            alert("Unsuccessful, Error" + error);
+          });
+      }
+
+      // Update Data
+
+      function UpdateData() {
+        update(ref(db, "Photocards/" + pcname.value), {
+          Photocard: pcname.value,
+          GroupName: grpname.value,
+          Album_Merch_DVD_Event: album.value,
+          Condition: condition.value,
+          Quantity: quanti.value,
+          Status: stats.value,
+          Price: price.value
+        })
+          .then(() => {
+            alert("PC Info Updated Successfully!");
+            window.location.href = "insert.html";
+          })
+          .catch((error) => {
+            alert("Unsuccessful, Error" + error);
+          });
+      }
+
+      // Delete Function
+
+      function DeleteData() {
+        remove(ref(db, "Photocards/" + pcname.value))
+          .then(() => {
+            alert("PC Deleted Successfully!");
+            window.location.href = "insert.html";
+          })
+          .catch((error) => {
+            alert("Unsuccessful, Error" + error);
+          });
+      }
+
+      //Assign events to buttons
+
+      insrtBtn.addEventListener("click", InsertData);
+      selBtn.addEventListener("click", SelectData);
+      updtBtn.addEventListener("click", UpdateData);
+      dltBtn.addEventListener("click", DeleteData);
+    </script>
+  </body>
+</html>
